@@ -21,3 +21,11 @@ div.card div.button {
 div.card div.button button {
   margin-right: 5px;
 }
+
+span.doing {
+  color: green;
+}
+
+span.finish {
+  color: blue;
+}

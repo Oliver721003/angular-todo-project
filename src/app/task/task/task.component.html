@@ -4,7 +4,18 @@
       {{ task.subject }}
       <button type="button" [disabled]="task.state === TaskState.Finish">編輯</button>
     </span>
-    <span>{{ getStateDesc() }}</span>
+    <!-- 單個樣式繫結 -->
+    <!-- <span [style.color]="getStateColor()">{{ getStateDesc() }}</span> -->
+    <!-- 多個樣式繫結 -->
+    <!-- <span [style]="getStateStyle()">{{ getStateDesc() }}</span> -->
+    <!-- 單個樣式類別繫結 -->
+    <span [class.doing]="task.state === TaskState.Doing" [class.finish]="task.state === TaskState.Finish">
+      {{ getStateDesc() }}
+    </span>
+    <!-- 多個樣式類別繫結 -->
+    <!-- <span [class]="{ doing: task.state === TaskState.Doing, finish: task.state === TaskState.Finish }">
+      {{ getStateDesc() }}
+    </span> -->
   </div>
   <div class="button">
     <span>

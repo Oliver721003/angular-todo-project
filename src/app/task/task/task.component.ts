@@ -30,6 +30,24 @@ export class TaskComponent implements OnInit {
     }
   }
 
+  getStateColor(): string {
+    switch (this.task.state) {
+      case TaskState.Doing:
+        return 'green';
+      case TaskState.Finish:
+        return 'blue';
+    }
+  }
+
+  getStateStyle(): string {
+    switch (this.task.state) {
+      case TaskState.Doing:
+        return 'color: green';
+      case TaskState.Finish:
+        return 'color: blue';
+    }
+  }
+
   onSetTaskState(state: TaskState): void {
     this.task.state = state;
   }
