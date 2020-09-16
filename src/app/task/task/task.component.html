@@ -3,4 +3,11 @@
     <span>{{ task.subject }}</span>
     <span>{{ getStateDesc() }}</span>
   </div>
+  <div class="button">
+    <span>
+      <button type="button" (click)="onSetTaskState(TaskState.None)">未完成</button>
+      <button type="button" (click)="onSetTaskState(TaskState.Doing)">進行中</button>
+      <button type="button" (click)="onSetTaskState(TaskState.Finish)">已完成</button>
+    </span>
+  </div>
 </div>

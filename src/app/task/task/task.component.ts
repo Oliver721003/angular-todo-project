@@ -11,6 +11,8 @@ import { Task } from '../../model/task';
 export class TaskComponent implements OnInit {
   task: Task;
 
+  TaskState = TaskState;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -26,5 +28,9 @@ export class TaskComponent implements OnInit {
       case TaskState.Finish:
         return '已完成';
     }
+  }
+
+  onSetTaskState(state: TaskState): void {
+    this.task.state = state;
   }
 }
