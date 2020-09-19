@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 import { TaskState } from '../../enum/task-state.enum';
 
@@ -9,7 +9,9 @@ import { TaskState } from '../../enum/task-state.enum';
 })
 export class TaskComponent implements OnInit, OnChanges {
   @Input() subject: string;
+
   @Input() state: TaskState;
+  @Output() stateChange = new EventEmitter<TaskState>();
 
   stateDesc: string;
 
@@ -53,6 +55,6 @@ export class TaskComponent implements OnInit, OnChanges {
   }
 
   onSetTaskState(state: TaskState): void {
-    this.state = state;
+    this.stateChange.emit(state);
   }
 }
