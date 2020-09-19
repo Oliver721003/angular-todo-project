@@ -9,7 +9,18 @@ import { TaskState } from '../../enum/task-state.enum';
 })
 export class TaskComponent implements OnInit {
   @Input() subject: string;
-  @Input() state: TaskState;
+
+  private _state: TaskState;
+  @Input()
+  set state(state: TaskState) {
+    this._state = state;
+    this.stateDesc = this.getStateDesc();
+  }
+  get state(): TaskState {
+    return this._state;
+  }
+
+  stateDesc: string;
 
   TaskState = TaskState;
 

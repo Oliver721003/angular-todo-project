@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+import { TaskState } from './enum/task-state.enum';
 import { Task } from './model/task';
 
 @Component({
@@ -7,9 +9,20 @@ import { Task } from './model/task';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  task: Task;
+  tasks: Task[];
+
+  selectedTask: Task;
 
   ngOnInit(): void {
-    this.task = new Task('頁面需要顯示待辦事項主旨');
+    this.tasks = [
+      new Task('頁面需要顯示待辦事項主旨'),
+      new Task('可以設定待辦事項的狀態', TaskState.Doing),
+      new Task('當待辦事項狀態為已完的事項無法編輯事項', TaskState.Finish),
+    ];
+    this.onSelectTask(0);
+  }
+
+  onSelectTask(index: number): void {
+    this.selectedTask = this.tasks[index];
   }
 }

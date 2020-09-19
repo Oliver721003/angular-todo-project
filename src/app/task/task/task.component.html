@@ -10,11 +10,11 @@
     <!-- <span [style]="getStateStyle()">{{ getStateDesc() }}</span> -->
     <!-- 單個樣式類別繫結 -->
     <span [class.doing]="state === TaskState.Doing" [class.finish]="state === TaskState.Finish">
-      {{ getStateDesc() }}
+      {{ stateDesc }}
     </span>
     <!-- 多個樣式類別繫結 -->
     <!-- <span [class]="{ doing: state === TaskState.Doing, finish: state === TaskState.Finish }">
-      {{ getStateDesc() }}
+      {{ stateDesc }}
     </span> -->
   </div>
   <div class="button">
