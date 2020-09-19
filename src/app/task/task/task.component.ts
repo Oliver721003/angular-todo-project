@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 
 import { TaskState } from '../../enum/task-state.enum';
 
@@ -7,18 +7,9 @@ import { TaskState } from '../../enum/task-state.enum';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css'],
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent implements OnInit, OnChanges {
   @Input() subject: string;
-
-  private _state: TaskState;
-  @Input()
-  set state(state: TaskState) {
-    this._state = state;
-    this.stateDesc = this.getStateDesc();
-  }
-  get state(): TaskState {
-    return this._state;
-  }
+  @Input() state: TaskState;
 
   stateDesc: string;
 
@@ -27,6 +18,10 @@ export class TaskComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  ngOnChanges(): void {
+    this.stateDesc = this.getStateDesc();
+  }
 
   getStateDesc(): string {
     switch (this.state) {
