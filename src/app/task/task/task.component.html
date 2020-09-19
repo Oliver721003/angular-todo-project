@@ -1,19 +1,19 @@
 <div class="card">
   <div class="content">
     <span>
-      {{ task.subject }}
-      <button type="button" [disabled]="task.state === TaskState.Finish">編輯</button>
+      {{ subject }}
+      <button type="button" [disabled]="state === TaskState.Finish">編輯</button>
     </span>
     <!-- 單個樣式繫結 -->
     <!-- <span [style.color]="getStateColor()">{{ getStateDesc() }}</span> -->
     <!-- 多個樣式繫結 -->
     <!-- <span [style]="getStateStyle()">{{ getStateDesc() }}</span> -->
     <!-- 單個樣式類別繫結 -->
-    <span [class.doing]="task.state === TaskState.Doing" [class.finish]="task.state === TaskState.Finish">
+    <span [class.doing]="state === TaskState.Doing" [class.finish]="state === TaskState.Finish">
       {{ getStateDesc() }}
     </span>
     <!-- 多個樣式類別繫結 -->
-    <!-- <span [class]="{ doing: task.state === TaskState.Doing, finish: task.state === TaskState.Finish }">
+    <!-- <span [class]="{ doing: state === TaskState.Doing, finish: state === TaskState.Finish }">
       {{ getStateDesc() }}
     </span> -->
   </div>

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { TaskState } from '../../enum/task-state.enum';
-import { Task } from '../../model/task';
 
 @Component({
   selector: 'app-task',
@@ -9,18 +8,17 @@ import { Task } from '../../model/task';
   styleUrls: ['./task.component.css'],
 })
 export class TaskComponent implements OnInit {
-  task: Task;
+  @Input() subject: string;
+  @Input() state: TaskState;
 
   TaskState = TaskState;
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.task = new Task('頁面需要顯示待辦事項主旨');
-  }
+  ngOnInit(): void {}
 
   getStateDesc(): string {
-    switch (this.task.state) {
+    switch (this.state) {
       case TaskState.None:
         return '未完成';
       case TaskState.Doing:
@@ -31,7 +29,7 @@ export class TaskComponent implements OnInit {
   }
 
   getStateColor(): string {
-    switch (this.task.state) {
+    switch (this.state) {
       case TaskState.Doing:
         return 'green';
       case TaskState.Finish:
@@ -40,7 +38,7 @@ export class TaskComponent implements OnInit {
   }
 
   getStateStyle(): string {
-    switch (this.task.state) {
+    switch (this.state) {
       case TaskState.Doing:
         return 'color: green';
       case TaskState.Finish:
@@ -49,6 +47,6 @@ export class TaskComponent implements OnInit {
   }
 
   onSetTaskState(state: TaskState): void {
-    this.task.state = state;
+    this.state = state;
   }
 }
