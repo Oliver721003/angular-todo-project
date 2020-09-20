@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     this.selectedTask = this.tasks[index];
   }
 
-  onStateChange(state: TaskState): void {
-    this.selectedTask.state = state;
-  }
+  // onStateChange(state: TaskState): void {
+  //   this.selectedTask.state = state;
+  // }
 }
