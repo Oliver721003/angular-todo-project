@@ -17,7 +17,9 @@
       {{ stateDesc }}
     </span> -->
     <!-- ngClass -->
-    <span [ngClass]="stateClass">{{ stateDesc }}</span>
+    <!-- <span [ngClass]="stateClass">{{ stateDesc }}</span> -->
+    <!-- 自訂屬性型指令 -->
+    <span [appTaskStateColor]="state">{{ stateDesc }}</span>
   </div>
   <div class="button">
     <span>
