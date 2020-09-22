@@ -9,13 +9,15 @@
     <!-- 多個樣式繫結 -->
     <!-- <span [style]="getStateStyle()">{{ getStateDesc() }}</span> -->
     <!-- 單個樣式類別繫結 -->
-    <span [class.doing]="state === TaskState.Doing" [class.finish]="state === TaskState.Finish">
+    <!-- <span [class.doing]="state === TaskState.Doing" [class.finish]="state === TaskState.Finish">
       {{ stateDesc }}
-    </span>
+    </span> -->
     <!-- 多個樣式類別繫結 -->
     <!-- <span [class]="{ doing: state === TaskState.Doing, finish: state === TaskState.Finish }">
       {{ stateDesc }}
     </span> -->
+    <!-- ngClass -->
+    <span [ngClass]="stateClass">{{ stateDesc }}</span>
   </div>
   <div class="button">
     <span>

@@ -13,6 +13,8 @@ export class TaskComponent implements OnInit, OnChanges {
   @Input() state: TaskState;
   @Output() stateChange = new EventEmitter<TaskState>();
 
+  stateClass: { [key: string]: boolean };
+
   stateDesc: string;
 
   TaskState = TaskState;
@@ -22,6 +24,10 @@ export class TaskComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(): void {
+    this.stateClass = {
+      doing: this.state === TaskState.Doing,
+      finish: this.state === TaskState.Finish,
+    };
     this.stateDesc = this.getStateDesc();
   }
 
