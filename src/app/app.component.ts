@@ -11,7 +11,7 @@ import { Task } from './model/task';
 export class AppComponent implements OnInit {
   tasks: Task[];
 
-  selectedTask: Task;
+  // selectedTask: Task;
 
   ngOnInit(): void {
     this.tasks = [
@@ -19,12 +19,12 @@ export class AppComponent implements OnInit {
       new Task('可以設定待辦事項的狀態', TaskState.Doing),
       new Task('當待辦事項狀態為已完的事項無法編輯事項', TaskState.Finish),
     ];
-    this.onSelectTask(0);
+    // this.onSelectTask(0);
   }
 
-  onSelectTask(index: number): void {
-    this.selectedTask = this.tasks[index];
-  }
+  // onSelectTask(index: number): void {
+  //   this.selectedTask = this.tasks[index];
+  // }
 
   // onStateChange(state: TaskState): void {
   //   this.selectedTask.state = state;
