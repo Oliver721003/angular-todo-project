@@ -1,3 +1,7 @@
+:host(.odd) div.card {
+  background-color: cornsilk;
+}
+
 div.card {
   margin: 5px;
   font-size: 14pt;
