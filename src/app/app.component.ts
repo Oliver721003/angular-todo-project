@@ -9,17 +9,24 @@ import { Task } from './model/task';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  tasks: Task[];
+  tasks: Task[] = [];
 
   // selectedTask: Task;
 
   ngOnInit(): void {
+    // this.onSelectTask(0);
+  }
+
+  onLoad(): void {
     this.tasks = [
       new Task('頁面需要顯示待辦事項主旨'),
       new Task('可以設定待辦事項的狀態', TaskState.Doing),
       new Task('當待辦事項狀態為已完的事項無法編輯事項', TaskState.Finish),
     ];
-    // this.onSelectTask(0);
+  }
+
+  onClear(): void {
+    this.tasks = [];
   }
 
   // onSelectTask(index: number): void {
