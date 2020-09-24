@@ -1,4 +1,4 @@
 <div class="data-empty" *ngIf="tasks.length === 0">無待辦事項</div>
-<div *ngIf="tasks.length !== 0">
+<ng-container *ngIf="tasks.length !== 0">
   <app-task *ngFor="let task of tasks; let odd = odd" [class.odd]="odd" [subject]="task.subject" [(state)]="task.state"></app-task>
-</div>
+</ng-container>
