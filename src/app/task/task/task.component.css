@@ -18,6 +18,7 @@ div.card div.content {
 
 div.card div.button {
   padding-left: 10px;
+  padding-right: 10px;
   display: flex;
   justify-content: space-between;
 }
