@@ -13,6 +13,10 @@ export class TaskComponent implements OnInit, OnChanges {
   @Input() state: TaskState;
   @Output() stateChange = new EventEmitter<TaskState>();
 
+  @Input() level: 'XS' | 'S' | 'M' | 'L' | 'XL';
+  @Input() expectDate: Date;
+  @Input() finishedDate: Date;
+
   stateClass: { [key: string]: boolean };
 
   stateDesc: string;

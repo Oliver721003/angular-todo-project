@@ -23,6 +23,14 @@ export class AppComponent implements OnInit {
       new Task('可以設定待辦事項的狀態', TaskState.Doing),
       new Task('當待辦事項狀態為已完的事項無法編輯事項', TaskState.Finish),
     ];
+    this.tasks[0].level = 'XS';
+
+    this.tasks[1].level = 'S';
+    this.tasks[1].expectDate = new Date(2020, 10, 1);
+
+    this.tasks[2].level = 'M';
+    this.tasks[2].expectDate = new Date(2020, 9, 1);
+    this.tasks[2].finishedDate = new Date(2020, 9, 1);
   }
 
   onClear(): void {

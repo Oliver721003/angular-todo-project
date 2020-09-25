@@ -5,5 +5,13 @@
 </ng-template>
 
 <ng-template #list>
-  <app-task *ngFor="let task of tasks; let odd = odd" [class.odd]="odd" [subject]="task.subject" [(state)]="task.state"></app-task>
+  <app-task
+    *ngFor="let task of tasks; let odd = odd"
+    [class.odd]="odd"
+    [subject]="task.subject"
+    [(state)]="task.state"
+    [level]="task.level"
+    [expectDate]="task.expectDate"
+    [finishedDate]="task.finishedDate"
+  ></app-task>
 </ng-template>
