@@ -14,6 +14,7 @@ export class TaskComponent implements OnInit, OnChanges {
   @Output() stateChange = new EventEmitter<TaskState>();
 
   @Input() level: 'XS' | 'S' | 'M' | 'L' | 'XL';
+  @Input() tags: string[];
   @Input() expectDate: Date;
   @Input() finishedDate: Date;
 
