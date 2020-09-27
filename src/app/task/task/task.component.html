@@ -22,7 +22,7 @@
     <span [appTaskStateColor]="state">{{ stateDesc }}</span>
   </div>
   <div class="tags">
-    <span class="tag" *ngFor="let tag of tags">{{ tag | uppercase }}</span>
+    <span class="tag" *ngFor="let tag of tags">{{ tag | lowercase }}</span>
   </div>
   <div class="button">
     <span>
