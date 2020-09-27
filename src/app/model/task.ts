@@ -5,6 +5,8 @@ export class Task {
 
   level?: 'XS' | 'S' | 'M' | 'L' | 'XL';
 
+  tags?: string[];
+
   expectDate?: Date;
 
   finishedDate?: Date;
