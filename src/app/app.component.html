@@ -1,6 +1,9 @@
 <div>
-  <button type="button" (click)="onLoad()">載入資料</button>
-  <button type="button" (click)="onClear()">清空資料</button>
+  <span>
+    <button type="button" (click)="onLoad()">載入資料</button>
+    <button type="button" (click)="onClear()">清空資料</button>
+  </span>
+  <span>實際完成率：{{ completeRate | number: '1.0-2' }}%</span>
 </div>
 <app-task-list [tasks]="tasks"></app-task-list>
 <pre>{{ tasks | json }}</pre>

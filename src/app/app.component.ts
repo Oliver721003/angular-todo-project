@@ -13,6 +13,11 @@ export class AppComponent implements OnInit {
 
   // selectedTask: Task;
 
+  get completeRate(): number {
+    const completeCount = this.tasks.filter((task) => task.state === TaskState.Finish).length;
+    return (completeCount / this.tasks.length || 0) * 100;
+  }
+
   ngOnInit(): void {
     // this.onSelectTask(0);
   }
