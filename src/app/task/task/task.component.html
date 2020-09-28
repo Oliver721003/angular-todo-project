@@ -33,7 +33,7 @@
     </span>
     <span [ngSwitch]="state">
       <ng-container *ngSwitchCase="TaskState.Doing">預計完成日期：{{ expectDate }}</ng-container>
-      <ng-container *ngSwitchCase="TaskState.Finish">實際完成日期：{{ finishedDate }}</ng-container>
+      <ng-container *ngSwitchCase="TaskState.Finish">實際完成日期：{{ finishedDate | date: 'short' }}</ng-container>
       <ng-container *ngSwitchDefault>預估等級：{{ level }}</ng-container>
     </span>
   </div>
