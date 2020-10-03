@@ -11,12 +11,9 @@ import { TaskLocalService } from '../services/task-local.service';
 export class TaskListComponent implements OnInit {
   tasks: Task[];
 
-  taskService: TaskLocalService;
-
-  constructor() {}
+  constructor(private taskService: TaskLocalService) {}
 
   ngOnInit(): void {
-    this.taskService = new TaskLocalService();
     this.tasks = this.taskService.getData();
   }
 }
