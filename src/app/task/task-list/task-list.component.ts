@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Task } from '../../model/task';
+import { TaskLocalService } from '../services/task-local.service';
 
 @Component({
   selector: 'app-task-list',
@@ -8,9 +9,14 @@ import { Task } from '../../model/task';
   styleUrls: ['./task-list.component.css'],
 })
 export class TaskListComponent implements OnInit {
-  @Input() tasks: Task[];
+  tasks: Task[];
+
+  taskService: TaskLocalService;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.taskService = new TaskLocalService();
+    this.tasks = this.taskService.getData();
+  }
 }
