@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Task } from '../../model/task';
-import { TaskLocalService } from '../services/task-local.service';
+import { TaskRemoteService } from '../services/task-remote.service';
 
 @Component({
   selector: 'app-task-list',
@@ -11,9 +11,9 @@ import { TaskLocalService } from '../services/task-local.service';
 export class TaskListComponent implements OnInit {
   tasks: Task[];
 
-  constructor(private taskService: TaskLocalService) {}
+  constructor(private taskService: TaskRemoteService) {}
 
   ngOnInit(): void {
-    this.tasks = this.taskService.getData();
+    this.taskService.getData().subscribe((tasks) => (this.tasks = tasks));
   }
 }
