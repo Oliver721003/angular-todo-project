@@ -1,4 +1,4 @@
-<ng-container *ngIf="tasks.length === 0; then dataEmpty; else list"></ng-container>
+<ng-container *ngIf="tasks?.length === 0; then dataEmpty; else list"></ng-container>
 
 <ng-template #dataEmpty>
   <div class="data-empty">無待辦事項</div>
