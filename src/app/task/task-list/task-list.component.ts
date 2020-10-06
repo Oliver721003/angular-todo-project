@@ -9,6 +9,7 @@ import { TaskRemoteService } from '../services/task-remote.service';
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css'],
+  providers: [CounterService],
 })
 export class TaskListComponent implements OnInit {
   tasks$: Observable<Task[]>;
