@@ -3,6 +3,17 @@
   <button type="button" (click)="counterService.add()">Add {{ counterService.count }}</button>
 </div> -->
 
+<div class="search">
+  <div>
+    <div class="input">
+      <input type="text" [(ngModel)]="subject" placeholder="主旨" />
+    </div>
+    <div class="button">
+      <button type="button" (click)="onSearch()">查詢</button>
+    </div>
+  </div>
+</div>
+
 <ng-container *ngIf="tasks$ | async as tasks; else dataEmpty">
   <app-task
     *ngFor="let task of tasks; let odd = odd"
