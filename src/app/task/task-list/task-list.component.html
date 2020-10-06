@@ -6,7 +6,7 @@
 <div class="search">
   <div>
     <div class="input">
-      <input type="text" [(ngModel)]="subject" placeholder="主旨" />
+      <input type="text" #subject="ngModel" ngModel placeholder="主旨" />
     </div>
     <div class="button">
       <button type="button" (click)="onSearch()">查詢</button>
