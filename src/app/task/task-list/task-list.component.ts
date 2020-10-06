@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Task } from '../../model/task';
+import { CounterService } from '../services/counter.service';
 import { TaskRemoteService } from '../services/task-remote.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { TaskRemoteService } from '../services/task-remote.service';
 export class TaskListComponent implements OnInit {
   tasks$: Observable<Task[]>;
 
-  constructor(private taskService: TaskRemoteService) {}
+  constructor(private taskService: TaskRemoteService, public counterService: CounterService) {}
 
   ngOnInit(): void {
     this.tasks$ = this.taskService.getData();

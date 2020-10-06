@@ -1,5 +1,9 @@
 <app-page-container>
   <app-page-title pageTitle="待辦事項清單"></app-page-title>
+  <div>
+    <strong>AppComponent</strong>
+    <button type="button" (click)="counterService.add()">Add {{ counterService.count }}</button>
+  </div>
   <!-- <div>
     <span>
       <button type="button" (click)="onLoad()">載入資料</button>

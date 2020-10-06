@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CounterService } from './task/services/counter.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,6 +16,8 @@ export class AppComponent implements OnInit {
   //   const completeCount = this.tasks.filter((task) => task.state === TaskState.Finish).length;
   //   return completeCount / this.tasks.length || 0;
   // }
+
+  constructor(public counterService: CounterService) {}
 
   ngOnInit(): void {
     // this.onSelectTask(0);
