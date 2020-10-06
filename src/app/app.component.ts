@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   //   return completeCount / this.tasks.length || 0;
   // }
 
-  constructor(public counterService: CounterService) {}
+  // constructor(public counterService: CounterService) {}
 
   ngOnInit(): void {
     // this.onSelectTask(0);

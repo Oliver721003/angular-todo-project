@@ -1,7 +1,8 @@
-<div class="di">
+<!-- <div class="di">
   <strong>TaskListComponent</strong>
   <button type="button" (click)="counterService.add()">Add {{ counterService.count }}</button>
-</div>
+</div> -->
+
 <ng-container *ngIf="tasks$ | async as tasks; else dataEmpty">
   <app-task
     *ngFor="let task of tasks; let odd = odd"

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 import { TaskState } from '../../enum/task-state.enum';
 import { Task } from '../../model/task';
@@ -28,7 +29,8 @@ export class TaskLocalService {
     this._tasks[2].finishedDate = new Date(2020, 9, 1);
   }
 
-  getData(): Task[] {
-    return this._tasks;
+  getData(): Observable<Task[]> {
+    console.log('from TaskLocalService');
+    return of(this._tasks);
   }
 }
