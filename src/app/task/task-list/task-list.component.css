@@ -12,3 +12,26 @@ div.di {
   padding: 0px 15px 0px 10px;
   justify-content: space-between;
 }
+
+.search {
+  padding: 10px;
+}
+
+.search div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search div.input {
+  margin-right: 10px;
+  flex-grow: 1;
+  display: flex;
+}
+
+.search div.input input {
+  flex-grow: 1;
+}
+
+.search div.button * {
+  margin-right: 4px;
+}

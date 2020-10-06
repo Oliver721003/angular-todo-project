@@ -12,7 +12,15 @@ export class TaskRemoteService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getData(): Observable<Task[]> {
-    return this.httpClient.get<Task[]>(this._url);
+  getData(subject?: string, state?: number): Observable<Task[]> {
+    const condition = [];
+    if (subject) {
+      condition.push(`subject_like=${subject}`);
+    }
+    if (state !== undefined) {
+      condition.push(`state=${state}`);
+    }
+    const url = this._url + (condition.length === 0 ? '' : `?${condition.join('&')}`);
+    return this.httpClient.get<Task[]>(url);
   }
 }
