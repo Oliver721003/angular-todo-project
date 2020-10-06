@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { Task } from '../../model/task';
@@ -12,8 +12,6 @@ import { TaskRemoteService } from '../services/task-remote.service';
   // providers: [CounterService]
 })
 export class TaskListComponent implements OnInit {
-  @ViewChild('subject') subject: NgModel;
-
   tasks$: Observable<Task[]>;
 
   // constructor(private taskService: TaskRemoteService, public counterService: CounterService) {}
@@ -23,7 +21,8 @@ export class TaskListComponent implements OnInit {
     this.tasks$ = this.taskService.getData();
   }
 
-  onSearch(): void {
-    this.tasks$ = this.taskService.getData(this.subject.value);
+  onSearch(form: NgForm): void {
+    const { subject, status } = form.value;
+    this.tasks$ = this.taskService.getData(subject, status);
   }
 }
