@@ -36,18 +36,14 @@ div.di {
   margin-right: 4px;
 }
 
-.search.ng-pristine {
-  border: solid 1px blueviolet;
+.search div.input input.ng-touched.ng-invalid {
+  border-color: red;
+  border-width: 1px;
 }
 
-.search.ng-dirty {
-  border: solid 1px coral;
-}
-
-.search div.input input.ng-pristine {
-  border-color: navy;
-}
-
-.search div.input input.ng-dirty {
-  border-color: green;
+ul {
+  margin: 0;
+  padding-left: 2em;
+  font-size: 10pt;
+  color: red;
 }

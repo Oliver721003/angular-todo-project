@@ -6,7 +6,7 @@
 <form class="search" #form="ngForm" (submit)="onSearch(form)">
   <div>
     <div class="input">
-      <input type="text" name="subject" #subject="ngModel" ngModel placeholder="主旨" />
+      <input type="text" name="subject" #subject="ngModel" ngModel placeholder="主旨" required minlength="2" maxlength="10" />
       <select name="status" #status="ngModel" ngModel>
         <option value="">事項狀態</option>
         <option value="0">未完成</option>
@@ -19,6 +19,10 @@
       <button type="submit">查詢</button>
     </div>
   </div>
+  <ul *ngIf="form.touched && form.invalid">
+    <li *ngIf="subject.hasError('required')">需要輸入主旨</li>
+    <li *ngIf="subject.hasError('minlength')">最少需要 {{ subject.errors.minlength.requiredLength }} 個字</li>
+  </ul>
 </form>
 
 <ng-container *ngIf="tasks$ | async as tasks; else dataEmpty">
