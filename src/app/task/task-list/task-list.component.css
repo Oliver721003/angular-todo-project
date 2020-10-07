@@ -35,3 +35,19 @@ div.di {
 .search div.button * {
   margin-right: 4px;
 }
+
+.search.ng-untouched {
+  border: solid 1px blueviolet;
+}
+
+.search.ng-touched {
+  border: solid 1px coral;
+}
+
+.search div.input input.ng-untouched {
+  border-color: navy;
+}
+
+.search div.input input.ng-touched {
+  border-color: green;
+}
