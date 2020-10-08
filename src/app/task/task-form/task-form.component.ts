@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-task-form',
@@ -9,13 +9,20 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class TaskFormComponent implements OnInit {
   form: FormGroup;
 
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      subject: new FormControl(),
-      state: new FormControl(0),
-      level: new FormControl(),
+    // this.form = this.fb.group({
+    //   subject: this.fb.control(undefined),
+    //   state: this.fb.control(0),
+    //   level: this.fb.control(undefined),
+    // });
+
+    // FormBuilder 縮寫
+    this.form = this.fb.group({
+      subject: [],
+      state: [0],
+      level: [],
     });
   }
 }
