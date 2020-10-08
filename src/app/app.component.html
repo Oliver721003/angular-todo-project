@@ -1,16 +1,7 @@
 <app-page-container>
   <app-page-title pageTitle="待辦事項清單"></app-page-title>
-  <!-- <div>
-    <strong>AppComponent</strong>
-    <button type="button" (click)="counterService.add()">Add {{ counterService.count }}</button>
-  </div> -->
-  <!-- <div>
-    <span>
-      <button type="button" (click)="onLoad()">載入資料</button>
-      <button type="button" (click)="onClear()">清空資料</button>
-    </span>
-    <span>實際完成率：{{ completeRate | percent: '1.0-2' }}</span>
-  </div> -->
-  <app-task-list></app-task-list>
-  <!-- <pre>{{ tasks | json }}</pre> -->
+  <div>
+    <app-task-list></app-task-list>
+    <app-task-form></app-task-form>
+  </div>
 </app-page-container>
