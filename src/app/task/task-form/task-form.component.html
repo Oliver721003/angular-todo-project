@@ -1,1 +1,18 @@
-<p>task-form works!</p>
+<form [formGroup]="form">
+  <div class="form-field">
+    <label>主旨</label>
+    <input type="text" formControlName="subject" />
+  </div>
+  <div class="form-field">
+    <label>等級</label>
+    <select formControlName="level">
+      <option value=""></option>
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+    </select>
+  </div>
+</form>
+<pre>{{ form.value | json }}</pre>
