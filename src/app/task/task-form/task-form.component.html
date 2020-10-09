@@ -14,5 +14,20 @@
       <option value="XL">XL</option>
     </select>
   </div>
+  <div class="tags-field">
+    <button type="button" (click)="onAddTag()">標籤新增</button>
+    <!-- <div formArrayName="tags" *ngFor="let control of tags.controls; let index = index">
+      <ng-container [formGroupName]="index">
+        <input type="text" formControlName="tag" />
+      </ng-container>
+    </div> -->
+    <div formArrayName="tags" *ngFor="let control of tags.controls; let index = index">
+      <input type="text" [formControl]="control" />
+      <button type="button" (click)="onDeleteTag(index)">刪除</button>
+    </div>
+  </div>
+  <div class="button">
+    <button type="button" (click)="onSave()">儲存</button>
+  </div>
 </form>
 <pre>{{ form.value | json }}</pre>

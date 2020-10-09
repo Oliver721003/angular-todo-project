@@ -20,3 +20,23 @@ div.form-field input,
 div.form-field select {
   flex-grow: 1;
 }
+
+div.tags-field {
+  padding: 10px 20px 10px 0;
+  margin: 5px 0;
+}
+
+div.tags-field div {
+  display: flex;
+  margin-top: 10px;
+  padding-left: 80px;
+}
+
+div.tags-field div input {
+  flex-grow: 1;
+}
+
+div.button {
+  margin-top: 20px;
+  text-align: center;
+}
