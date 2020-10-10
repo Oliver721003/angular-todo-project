@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { TaskRemoteService } from '../services/task-remote.service';
 
@@ -11,6 +11,14 @@ import { TaskRemoteService } from '../services/task-remote.service';
 export class TaskFormComponent implements OnInit {
   form: FormGroup;
 
+  get subject(): FormControl {
+    return this.form.get('subject') as FormControl;
+  }
+
+  get level(): FormControl {
+    return this.form.get('level') as FormControl;
+  }
+
   get tags(): FormArray {
     return this.form.get('tags') as FormArray;
   }
@@ -19,9 +27,9 @@ export class TaskFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      subject: this.fb.control(undefined),
+      subject: this.fb.control(undefined, [Validators.required]),
       state: this.fb.control(0),
-      level: this.fb.control(undefined),
+      level: this.fb.control(undefined, [Validators.required]),
       tags: this.fb.array([]),
     });
   }

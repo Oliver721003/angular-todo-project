@@ -3,6 +3,9 @@
     <label>主旨</label>
     <input type="text" formControlName="subject" />
   </div>
+  <ul *ngIf="subject.touched && subject.invalid">
+    <li *ngIf="subject.hasError('required')">需要輸入主旨</li>
+  </ul>
   <div class="form-field">
     <label>等級</label>
     <select formControlName="level">
@@ -14,6 +17,9 @@
       <option value="XL">XL</option>
     </select>
   </div>
+  <ul *ngIf="level.touched && level.invalid">
+    <li *ngIf="level.hasError('required')">需要輸入等級</li>
+  </ul>
   <div class="tags-field">
     <button type="button" (click)="onAddTag()">標籤新增</button>
     <!-- <div formArrayName="tags" *ngFor="let control of tags.controls; let index = index">
