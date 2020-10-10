@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { Task } from '../../model/task';
 
@@ -25,6 +25,11 @@ export class TaskRemoteService {
     }
     const url = this._url + (condition.length === 0 ? '' : `?${condition.join('&')}`);
     return this.httpClient.get<Task[]>(url).pipe(tap((tasks) => (this._id = Math.max(...tasks.map((task) => task.id)) + 1)));
+  }
+
+  isExists(subject: string): Observable<boolean> {
+    const url = `${this._url}?subject=${subject}`;
+    return this.httpClient.get<Task[]>(url).pipe(map((tasks) => tasks.length > 0));
   }
 
   add(task: Task): Observable<any> {

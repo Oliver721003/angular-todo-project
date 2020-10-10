@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { TaskRemoteService } from '../services/task-remote.service';
 
@@ -27,7 +29,7 @@ export class TaskFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      subject: this.fb.control(undefined, [Validators.required]),
+      subject: this.fb.control(undefined, [Validators.required], [this.shouldBeUnique.bind(this)]),
       state: this.fb.control(0),
       level: this.fb.control(undefined, [Validators.required]),
       tags: this.fb.array([], [this.arrayCannotEmpty()]),
@@ -44,6 +46,14 @@ export class TaskFormComponent implements OnInit {
 
   onDeleteTag(index: number): void {
     this.tags.removeAt(index);
+  }
+
+  shouldBeUnique(control: FormControl): Observable<ValidationErrors> {
+    if (control.value) {
+      return this.taskService.isExists(control.value).pipe(map((isExists) => (isExists ? { shouldBeUnique: true } : null)));
+    } else {
+      return of(null);
+    }
   }
 
   arrayCannotEmpty(): ValidatorFn {

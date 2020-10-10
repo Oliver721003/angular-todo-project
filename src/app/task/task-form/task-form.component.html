@@ -5,6 +5,7 @@
   </div>
   <ul *ngIf="subject.touched && subject.invalid">
     <li *ngIf="subject.hasError('required')">需要輸入主旨</li>
+    <li *ngIf="subject.hasError('shouldBeUnique')">主旨已存在</li>
   </ul>
   <div class="form-field">
     <label>等級</label>
