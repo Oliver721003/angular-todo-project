@@ -32,6 +32,9 @@
       <button type="button" (click)="onDeleteTag(index)">刪除</button>
     </div>
   </div>
+  <ul *ngIf="tags.invalid">
+    <li *ngIf="tags.hasError('cannotEmpty')">標籤不得為空</li>
+  </ul>
   <div class="button">
     <button type="button" (click)="onSave()">儲存</button>
   </div>

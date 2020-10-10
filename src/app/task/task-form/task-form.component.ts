@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 
 import { TaskRemoteService } from '../services/task-remote.service';
 
@@ -30,7 +30,7 @@ export class TaskFormComponent implements OnInit {
       subject: this.fb.control(undefined, [Validators.required]),
       state: this.fb.control(0),
       level: this.fb.control(undefined, [Validators.required]),
-      tags: this.fb.array([]),
+      tags: this.fb.array([], [this.arrayCannotEmpty]),
     });
   }
 
@@ -44,6 +44,13 @@ export class TaskFormComponent implements OnInit {
 
   onDeleteTag(index: number): void {
     this.tags.removeAt(index);
+  }
+
+  arrayCannotEmpty(control: FormArray): ValidationErrors {
+    if (control.length === 0) {
+      return { cannotEmpty: true };
+    }
+    return null;
   }
 
   onSave(): void {
