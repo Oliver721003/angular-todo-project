@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Task } from '../../model/task';
@@ -15,7 +16,7 @@ export class TaskListComponent implements OnInit {
   tasks$: Observable<Task[]>;
 
   // constructor(private taskService: TaskRemoteService, public counterService: CounterService) {}
-  constructor(private taskService: TaskRemoteService) {}
+  constructor(private router: Router, private taskService: TaskRemoteService) {}
 
   ngOnInit(): void {
     this.tasks$ = this.taskService.getData();
@@ -24,5 +25,10 @@ export class TaskListComponent implements OnInit {
   onSearch(form: NgForm): void {
     const { subject, status } = form.value;
     this.tasks$ = this.taskService.getData(subject, status);
+  }
+
+  onAdd(): void {
+    // this.router.navigate(['task-form']);
+    this.router.navigateByUrl('/task-form');
   }
 }

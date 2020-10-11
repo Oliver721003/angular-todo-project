@@ -47,3 +47,7 @@ ul {
   font-size: 10pt;
   color: red;
 }
+
+div.toolbar {
+  margin: 10px;
+}

@@ -3,6 +3,10 @@
   <button type="button" (click)="counterService.add()">Add {{ counterService.count }}</button>
 </div> -->
 
+<div class="toolbar">
+  <button type="button" (click)="onAdd()">新增</button>
+</div>
+
 <form class="search" #form="ngForm" (submit)="onSearch(form)">
   <div>
     <div class="input">
