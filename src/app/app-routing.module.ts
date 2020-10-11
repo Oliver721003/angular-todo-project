@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { MainPageComponent } from './main-page/main-page.component';
+import { TaskPageComponent } from './task/task-page/task-page.component';
+
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'main' },
+  { path: 'main', component: MainPageComponent },
+  { path: 'task-list', component: TaskPageComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

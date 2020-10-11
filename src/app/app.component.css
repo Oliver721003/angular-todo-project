@@ -1,13 +1,26 @@
-div {
-  display: flex;
-  justify-content: space-between;
+nav {
+  padding: 10px;
 }
 
-div *:first-child {
+nav a {
   margin-right: 10px;
-  width: 65%;
+  border: solid 1px #999;
+  display: inline-block;
+  font-size: 12pt;
+  padding: 10px;
+  min-width: 80px;
+  text-align: center;
 }
 
-div *:last-child {
-  width: 35%;
+nav a:link,
+nav a:visited,
+nav a:hover,
+nav a:active {
+  color: black;
+  text-decoration: none;
+}
+
+nav a.active {
+  background-color: green;
+  color: white;
 }

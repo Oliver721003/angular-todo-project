@@ -1,7 +1,5 @@
-<app-page-container>
-  <app-page-title pageTitle="待辦事項清單"></app-page-title>
-  <div>
-    <app-task-list></app-task-list>
-    <app-task-form></app-task-form>
-  </div>
-</app-page-container>
+<nav>
+  <a [routerLink]="['main']" routerLinkActive="active">首頁</a>
+  <a [routerLink]="'task-list'" routerLinkActive="active">待辦事項</a>
+</nav>
+<router-outlet></router-outlet>
