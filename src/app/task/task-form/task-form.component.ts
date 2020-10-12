@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { filter, map, switchMap, tap } from 'rxjs/operators';
 
@@ -14,6 +14,10 @@ import { TaskRemoteService } from '../services/task-remote.service';
 export class TaskFormComponent implements OnInit {
   form: FormGroup;
 
+  get id(): FormControl {
+    return this.form.get('id') as FormControl;
+  }
+
   get subject(): FormControl {
     return this.form.get('subject') as FormControl;
   }
@@ -26,7 +30,7 @@ export class TaskFormComponent implements OnInit {
     return this.form.get('tags') as FormArray;
   }
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private taskService: TaskRemoteService) {}
+  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private taskService: TaskRemoteService) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -75,6 +79,10 @@ export class TaskFormComponent implements OnInit {
       }
       return null;
     };
+  }
+
+  onNext(): void {
+    this.router.navigate(['task-form', this.id.value + 1]);
   }
 
   onSave(): void {
