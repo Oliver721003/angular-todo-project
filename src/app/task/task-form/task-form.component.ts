@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { TaskRemoteService } from '../services/task-remote.service';
 
@@ -25,23 +26,34 @@ export class TaskFormComponent implements OnInit {
     return this.form.get('tags') as FormArray;
   }
 
-  constructor(private fb: FormBuilder, private taskService: TaskRemoteService) {}
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private taskService: TaskRemoteService) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
+      id: this.fb.control(undefined),
       subject: this.fb.control(undefined, [Validators.required], [this.shouldBeUnique.bind(this)]),
       state: this.fb.control(0),
       level: this.fb.control(undefined, [Validators.required]),
       tags: this.fb.array([], [this.arrayCannotEmpty()]),
     });
+
+    const id = +this.route.snapshot.paramMap.get('id');
+    if (!!id) {
+      this.taskService
+        .get(id)
+        .pipe(
+          tap(() => this.tags.clear),
+          tap((task) => this.onAddTag(task.tags.length))
+        )
+        .subscribe((task) => this.form.patchValue(task));
+    }
   }
 
-  onAddTag(): void {
-    // const tag = this.fb.group({
-    //   tag: this.fb.control(undefined),
-    // });
-    const tag = this.fb.control(undefined);
-    this.tags.push(tag);
+  onAddTag(count: number): void {
+    for (let i = 0; i <= count - 1; i++) {
+      const tag = this.fb.control(undefined);
+      this.tags.push(tag);
+    }
   }
 
   onDeleteTag(index: number): void {
