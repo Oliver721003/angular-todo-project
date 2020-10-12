@@ -18,6 +18,8 @@ export class TaskComponent implements OnInit, OnChanges {
   @Input() expectDate: Date;
   @Input() finishedDate: Date;
 
+  @Output() edit = new EventEmitter<void>();
+
   stateClass: { [key: string]: boolean };
 
   stateDesc: string;

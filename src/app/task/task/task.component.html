@@ -2,7 +2,7 @@
   <div class="content">
     <span>
       {{ subject | slice: 0:10 }}<span *ngIf="subject.length > 10">... </span>
-      <button type="button" [disabled]="state === TaskState.Finish">編輯</button>
+      <button type="button" [disabled]="state === TaskState.Finish" (click)="edit.emit()">編輯</button>
     </span>
     <!-- 單個樣式繫結 -->
     <!-- <span [style.color]="getStateColor()">{{ getStateDesc() }}</span> -->

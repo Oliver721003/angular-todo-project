@@ -31,4 +31,8 @@ export class TaskListComponent implements OnInit {
     // this.router.navigate(['task-form']);
     this.router.navigateByUrl('/task-form');
   }
+
+  onEdit(id: number): void {
+    this.router.navigate(['task-form', id]);
+  }
 }

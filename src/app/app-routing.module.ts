@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'main', component: MainPageComponent },
   { path: 'task-list', component: TaskPageComponent },
   { path: 'task-form', component: TaskFormComponent },
+  { path: 'task-form/:id', component: TaskFormComponent },
 ];
 
 @NgModule({

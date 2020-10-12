@@ -39,6 +39,7 @@
     [tags]="task.tags"
     [expectDate]="task.expectDate"
     [finishedDate]="task.finishedDate"
+    (edit)="onEdit(task.id)"
   ></app-task>
 </ng-container>
 
