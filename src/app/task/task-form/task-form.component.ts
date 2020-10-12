@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { Observable, of, Subject, Subscription } from 'rxjs';
+import { filter, map, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { TaskRemoteService } from '../services/task-remote.service';
 
@@ -11,7 +11,7 @@ import { TaskRemoteService } from '../services/task-remote.service';
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css'],
 })
-export class TaskFormComponent implements OnInit {
+export class TaskFormComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
   get id(): FormControl {
@@ -30,6 +30,8 @@ export class TaskFormComponent implements OnInit {
     return this.form.get('tags') as FormArray;
   }
 
+  stop$ = new Subject<void>();
+
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private taskService: TaskRemoteService) {}
 
   ngOnInit(): void {
@@ -41,16 +43,21 @@ export class TaskFormComponent implements OnInit {
       tags: this.fb.array([], [this.arrayCannotEmpty()]),
     });
 
-    const id = +this.route.snapshot.paramMap.get('id');
-    if (!!id) {
-      this.taskService
-        .get(id)
-        .pipe(
-          tap(() => this.tags.clear),
-          tap((task) => this.onAddTag(task.tags.length))
-        )
-        .subscribe((task) => this.form.patchValue(task));
-    }
+    this.route.paramMap
+      .pipe(
+        map((param) => +param.get('id')),
+        filter((id) => !!id),
+        switchMap((id) => this.taskService.get(id)),
+        tap(() => this.tags.clear()),
+        tap((task) => this.onAddTag(task.tags.length)),
+        takeUntil(this.stop$)
+      )
+      .subscribe((task) => this.form.patchValue(task));
+  }
+
+  ngOnDestroy(): void {
+    this.stop$.next();
+    this.stop$.complete();
   }
 
   onAddTag(count: number): void {
