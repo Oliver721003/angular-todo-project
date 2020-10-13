@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, Valid
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, Subject, Subscription } from 'rxjs';
 import { filter, map, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { Task } from '../../model/task';
 
 import { TaskRemoteService } from '../services/task-remote.service';
 
@@ -43,11 +44,10 @@ export class TaskFormComponent implements OnInit, OnDestroy {
       tags: this.fb.array([], [this.arrayCannotEmpty()]),
     });
 
-    this.route.paramMap
+    this.route.data
       .pipe(
-        map((param) => +param.get('id')),
-        filter((id) => !!id),
-        switchMap((id) => this.taskService.get(id)),
+        map(({ task }: { task: Task }) => task),
+        filter((task) => !!task),
         tap(() => this.tags.clear()),
         tap((task) => this.onAddTag(task.tags.length)),
         takeUntil(this.stop$)
@@ -60,7 +60,7 @@ export class TaskFormComponent implements OnInit, OnDestroy {
     this.stop$.complete();
   }
 
-  onAddTag(count: number): void {
+  onAddTag(count: number = 0): void {
     for (let i = 0; i <= count - 1; i++) {
       const tag = this.fb.control(undefined);
       this.tags.push(tag);
