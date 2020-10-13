@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, of, Subject, Subscription } from 'rxjs';
-import { filter, map, switchMap, takeUntil, tap } from 'rxjs/operators';
-import { Task } from '../../model/task';
+import { Observable, of, Subject } from 'rxjs';
+import { filter, map, takeUntil, tap } from 'rxjs/operators';
 
+import { Task } from '../../model/task';
 import { TaskRemoteService } from '../services/task-remote.service';
 
 @Component({
