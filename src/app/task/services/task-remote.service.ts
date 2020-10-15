@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '@environment';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
@@ -9,7 +10,7 @@ import { Task } from '../../model/task';
   providedIn: 'root',
 })
 export class TaskRemoteService {
-  private _url = 'http://localhost:3000/tasks';
+  private _url = `${environment.api}/tasks`;
 
   private _id: number;
 
